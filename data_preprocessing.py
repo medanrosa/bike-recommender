@@ -6,16 +6,15 @@ def load_data(path: str) -> pd.DataFrame:
 
 def impute_missing_riding_style(df: pd.DataFrame) -> pd.DataFrame:
     """
-    1) Manual lookup for any known missing entries.
-    2) Fallback heuristic based on bike_name keywords.
+    1) Manual lookup (if any).
+    2) Heuristic fallback based on bike_name keywords.
     """
     df = df.copy()
-    lookup = {
-        "2021 Slingshot SL Autodrive": "autocycle",
-        "2019 Slingshot SL":              "autocycle",
-        # …add any others you’ve researched…
+    manual = {
+        # e.g. "2019 Slingshot SL": "autocycle",
+        # …add any bikes you looked up by hand…
     }
-    def infer_style(name):
+    def infer(name):
         m = str(name).lower()
         if any(k in m for k in ["r1","r6","cbr","gsx-r","ninja","yzf","panigale","rc","rs","rr"]):
             return "supersport"
@@ -29,32 +28,31 @@ def impute_missing_riding_style(df: pd.DataFrame) -> pd.DataFrame:
             return "naked"
         return "naked"
 
-    # 1) apply manual lookup where riding_style is missing or empty
+    # 1) manual fill
     df["riding_style"] = df.apply(
-        lambda r: lookup.get(r["bike_name"], r["riding_style"])
-        if pd.isna(r["riding_style"]) or r["riding_style"] == "" else r["riding_style"],
+        lambda r: manual.get(r["bike_name"], r["riding_style"])
+        if pd.isna(r["riding_style"]) or r["riding_style"] == ""
+        else r["riding_style"],
         axis=1
     )
-    # 2) heuristic fill for any still-missing
+    # 2) heuristic fill
     df["riding_style"] = df.apply(
-        lambda r: infer_style(r["bike_name"])
-        if pd.isna(r["riding_style"]) or r["riding_style"] == "" else r["riding_style"],
+        lambda r: infer(r["bike_name"])
+        if pd.isna(r["riding_style"]) or r["riding_style"] == ""
+        else r["riding_style"],
         axis=1
     )
     return df
 
 def preprocess(df: pd.DataFrame) -> pd.DataFrame:
-    # 1) fill riding_style
     df = impute_missing_riding_style(df)
-    # 2) drop any rows missing core specs
     df = df.dropna(subset=["engine_size","price","riding_style"]).copy()
-    # 3) enforce int types
     df["engine_size"] = df["engine_size"].astype(int)
     df["price"]       = df["price"].astype(int)
-    # 4) encode riding_style
     style_map = {
-        "supersport": 0, "supermoto": 1, "naked": 2,
-        "touring":    3, "dirtbike": 4,   "autocycle": 5
+        "supersport": 0, "supermoto": 1,
+        "naked":      2, "touring":   3,
+        "dirtbike":   4, "autocycle": 5
     }
     df["riding_style_code"] = df["riding_style"].map(style_map)
     return df
