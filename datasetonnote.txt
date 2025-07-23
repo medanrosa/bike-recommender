@@ -1,0 +1,328 @@
+bike_name	price	monthly_payment	engine_size	riding_style
+2024 BMW M 1000 RR	39999	$667/MO	999	supersport
+2022 BMW M 1000 RR 50th Anniversary Edition	35999	$600/MO	999	supersport
+2022 Kawasaki Ninja H2	34999	$583/MO	998	supersport
+2023 Ducati Panigale V4S	28999	$483/MO	1103	supersport
+2010 Honda Gold Wing Trike and Trailer	27999	$467/MO	1832	touring
+2024 BMW S1000RR	25499	$425/MO	999	supersport
+2024 BMW S1000RR	24999	$417/MO	999	supersport
+2023 Slingshot SL Autodrive	23999	$400/MO	1997	autocycle
+2021 Slingshot R	22499	$375/MO	1997	autocycle
+2022 Yamaha YZF-R1 Anniversary Edition	21499	$358/MO	998	supersport
+2017 Yamaha YZF-R1M	20999	$350/MO	998	supersport
+2021 Slingshot SL Autodrive	20499	$342/MO		
+2024 Yamaha YZF-R1	20499	$342/MO		
+2019 Slingshot SL	19999	$333/MO		
+2024 Yamaha YZF-R1	19999	$333/MO		
+2024 Yamaha YZF-R1	19999	$333/MO		
+2022 Slingshot SL	19999	$333/MO		
+2024 Kawasaki ZX-10R 40th Anniversary Edition	19999	$333/MO		
+2024 Kawasaki Ninja ZX-10R KRT Edition	19499	$325/MO		
+2024 Kawasaki Ninja ZX-10R KRT Edition	19499	$325/MO		
+2023 Slingshot S with Tech Package	19499	$325/MO		
+2023 Slingshot S with Tech Package	18999	$317/MO		
+2024 Kawasaki Ninja ZX-10R KRT Edition	18999	$317/MO		
+2022 Can-Am Spyder RT	18999	$317/MO		
+2023 Yamaha YZF-R1	18599	$310/MO		
+2020 Aprilia RSV4 Factory 1100	18499	$308/MO		
+2023 Kawasaki Ninja ZX-10R KRT Edition	18499	$308/MO		
+2025 Ducati Panigale V2	17999	$300/MO		
+2019 Slingshot SLR	17999	$300/MO		
+2020 Can-Am Spyder RT Limited	17999	$300/MO		
+2023 Kawasaki Ninja ZX-10R	17999	$300/MO		
+2023 Kawasaki Ninja ZX-10R KRT Edition	17999	$300/MO		
+2022 Kawasaki Ninja ZX-10R	17999	$300/MO		
+2019 Slingshot SL	17499	$292/MO		
+2023 Honda CBR1000RR	17499	$292/MO		
+2023 Suzuki GSX-R1000R	16999	$283/MO		
+2023 Suzuki GSX-R1000R	16999	$283/MO		
+2023 Suzuki Hayabusa	16999	$283/MO		
+2023 Suzuki GSX-R1000	16999	$283/MO		
+2018 Yamaha YZF-R1	16999	$283/MO		
+2016 Yamaha YZF-R1 60th Anniversary	16999	$283/MO		
+2023 Suzuki Hayabusa	16499	$275/MO		
+2022 Suzuki GSX-R1000R	16297	$272/MO		
+2023 Suzuki GSX-R1000	15999	$267/MO		
+2019 Yamaha YZF-R6	15999	$267/MO		
+2023 Suzuki GSX-R1000R	15999	$267/MO		
+2019 Harley-Davidson Street Glide Special	15999	$267/MO		
+2019 Slingshot SL	15999	$267/MO		
+2018 Suzuki GSX-R1000R	15499	$258/MO		
+2020 Yamaha YZF-R6	15499	$258/MO		
+2022 Suzuki GSX-R1000R	15498	$258/MO		
+2023 Suzuki GSX-R1000	15299	$255/MO		
+2020 Yamaha YZF-R6	14999	$250/MO		
+2022 Honda CBR1000RR	14999	$250/MO		
+2025 Kawasaki Ninja ZX-6R	14999	$250/MO		
+2024 Yamaha MT-10	14999	$250/MO		
+2019 Can-Am Spyder RT Limited	14999	$250/MO		
+2020 Yamaha YZF-R6	14999	$250/MO		
+2023 Kawasaki Ninja ZX-14R	14899	$248/MO		
+2024 Kawasaki Ninja ZX-6R	14499	$242/MO		
+				
+2025 UBD TEXAS T-SHIRT	30	$1/MO		
+2025 UBD TEXAS HOODIE	60	$1/MO		
+2023 Kawasaki Z125	2599	$43/MO		
+2022 Benelli TNT 135	2999	$50/MO		
+2022 Kawasaki KLX 300R	3999	$67/MO		
+2010 Yamaha V Star 950	4299	$72/MO		
+2021 Royal Enfield Himalayan	4499	$75/MO		
+2013 Kawasaki Vulcan 900 Custom	4999	$83/MO		
+2021 Honda CBR300	5499	$92/MO		
+2022 Kawasaki Vulcan S	5687	$95/MO		
+2023 Kawasaki Ninja 400	5799	$97/MO		
+2023 Yamaha MT-03	5999	$100/MO		
+2023 Yamaha YZF-R3	6299	$105/MO		
+2023 Yamaha YZF-R3	6499	$108/MO		
+2023 Kawasaki Z650	6999	$117/MO		
+2022 Honda Rebel 1100	7199	$120/MO		
+2024 Kawasaki Ninja 500	7299	$122/MO		
+2016 Honda VFR1200X	7499	$125/MO		
+2018 Yamaha MT-07	7599	$127/MO		
+2020 Suzuki GSX-S750	7799	$130/MO		
+2021 Yamaha MT-07	7999	$133/MO		
+2022 Yamaha MT-07	8199	$137/MO		
+2020 Can-Am Ryker 900 Ace	8499	$142/MO		
+2021 Kawasaki Vulcan 900	8699	$145/MO		
+2024 Kawasaki Ninja 650 ABS	8899	$148/MO		
+2023 Honda CB650R	8999	$150/MO		
+2018 Slingshot GT LE				
+2023 Kawasaki Vulcan 900	7999	$133/MO		
+2022 Suzuki GSX-R750	12999	$217/MO		
+2020 Yamaha YZF-R6	13999	$233/MO		
+2021 Can-Am Ryker 900 ACE	7999	$133/MO		
+2020 Suzuki Katana 1000	7999	$133/MO		
+2022 Suzuki GSX-S750	8999	$150/MO		
+2024 Kawasaki Eliminator SE	5999	$100/MO		
+2022 Kawasaki Z650 ABS 50th Anniversary Edition	7499	$125/MO		
+2023 Yamaha MT-10	12399	$207/MO		
+2024 Yamaha YZF-R7	10599	$177/MO		
+2016 Yamaha YZF-R6	11999	$200/MO		
+2022 Husqvarna TX300I	7499	$125/MO		
+2015 Yamaha FJ-09	6999	$117/MO		
+2023 KTM 390 Duke				
+2020 Yamaha MT-09	8999	$150/MO		
+2022 Suzuki Hayabusa	2	$242/MO		
+2023 Honda Rebel 500	5999	$100/MO		
+2019 KTM 790 Duke	6999	$117/MO		
+2022 Harley-Davidson Pan America	12899	$215/MO		
+2023 Yamaha MT-10	13499	$225/MO		
+2023 Honda CBR500R	7999	$133/MO		
+2024 Honda NX500	6499	$108/MO		
+2013 Honda Gold Wing	9399	$157/MO		
+2022 Can-Am Ryker Rally 900	9499	$158/MO		
+2016 Honda Gold Wing	12999	$217/MO		
+2024 Honda Shadow Phantom	7999	$133/MO		
+2019 KTM Super Duke 1290 GT	4	$167/MO		
+2023 Suzuki GSX-R600	10499	$175/MO		
+2022 Suzuki GSX-R600	10499	$175/MO		
+2023 Suzuki GSX-R600	10998	$183/MO		
+2020 Kawasaki Versys 650 ABS	5499	$92/MO		
+2023 Kawasaki Ninja ZX-6R	11499	$192/MO		
+2019 Yamaha MT-09	7999	$133/MO		
+2024 Yamaha YZF-R7	9999	$167/MO		
+2020 Honda Fury	7999	$133/MO		
+2023 Kawasaki Z650	6999	$117/MO		
+2022 Kawasaki Z650RS ABS	6999	$117/MO		
+2022 Kawasaki Z650RS ABS	6499	$108/MO		
+2022 Suzuki GSX-R600	10999	$183/MO		
+2020 Suzuki GSX-R600	10999	$183/MO		
+2018 Suzuki GSX-R600	9999	$167/MO		
+2023 Suzuki GSX-R750	11999	$200/MO		
+2024 Kawasaki Eliminator ABS	6499	$108/MO		
+2024 Kawasaki Z650RS ABS	9399	$157/MO		
+2024 Suzuki GSX-R600	12999	$217/MO		
+2024 Honda Rebel 1100 DCT	9499	$158/MO		
+2024 Suzuki GSX-R750	13999	$233/MO		
+2021 Kawasaki Vulcan S Cafe	5999	$100/MO		
+2018 Yamaha YZF-R6	13999	$233/MO		
+2024 Suzuki GSX-R750	13999	$233/MO		
+2019 Honda CRF450L	8499	$142/MO		
+2023 Kawasaki Ninja ZX-6R	13299	$222/MO		
+2018 Kawasaki Ninja ZX-6R	10499	$175/MO		
+2024 Kawasaki Ninja ZX-6R	13999	$233/MO		
+2025 Kawasaki Ninja ZX-6R KRT Edition	14499	$242/MO		
+2025 Yamaha YZF-R7	10999	$183/MO		
+2023 Suzuki GSX-R750	13999	$233/MO		
+2024 Yamaha MT-09	10499	$175/MO		
+2021 Ducati Scrambler 11 Pro	8999	$150/MO		
+2023 Kawasaki Z120 PRO	2999	$50/MO		
+2022 Can-Am Ryker Rally 900 ACE	10499	$175/MO		
+2022 Kawasaki Z650 50th Anniversary Edition	7999	$133/MO		
+2024 Honda CBR600RR	13999	$233/MO		
+2022 Honda Rebel 300	4499	$75/MO		
+2024 Yamaha YZF-R7	10999	$183/MO		
+2024 Honda CB1000R	12999	$217/MO		
+2024 Yamaha YZF-R7	10499	$175/MO		
+2024 Kawasaki Ninja 650 KRT Edition	9199	$153/MO		
+2024 Kawasaki Ninja ZX-6R	14499	$242/MO		
+2024 Aprilia RS 660 Extrema	13999	$233/MO		
+2024 Kawasaki Ninja ZX-6R	14299	$238/MO		
+2024 Kawasaki Ninja ZX-6R	12999	$217/MO		
+2023 Triumph Tiger 900 GT Pro	9999	$167/MO		
+2023 Suzuki GSX-S1000	11999	$200/MO		
+2018 Suzuki Burgman	5999	$100/MO		
+2022 Suzuki GSX-R600	11499	$192/MO		
+2022 Suzuki Hayabusa	14499	$242/MO		
+2023 Aprilia Tuono 660 Factory	9999	$167/MO		
+2022 Aprilia RS 660 Limited Edition	11999	$200/MO		
+2019 Can-Am Spyder F3-S SE6	12999	$217/MO		
+2021 Can-Am Ryker 600 ACE	6999	$117/MO		
+2019 Honda Fury	8499	$142/MO		
+2022 Honda CBR500R	7999	$133/MO		
+2013 Honda CBR1000RR REPSOL	12999	$217/MO		
+2019 Yamaha MT-07	7499	$125/MO		
+2022 Suzuki GSX-S750	8999	$150/MO		
+2020 Yamaha MT-07	7999	$133/MO		
+2022 Suzuki GSX-R750	13999	$233/MO		
+2015 Yamaha YZF-R6	10999	$183/MO		
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 SWM SM 500R	8999	$150/MO	501	supermoto
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Ducati Monster SP	15495	$258/MO	937	naked
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Kawasaki KX450	9699	$162/MO	449	dirt
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Ducati Multistrada V4 S	25995	$433/MO	1158	adventure
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 BMW R 1250 GS Adventure	20995	$350/MO	1254	adventure
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 KTM 450 SX-F	11299	$188/MO	449	dirt
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 Kawasaki KX450	9699	$162/MO	449	dirt
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 Kawasaki KX450	9699	$162/MO	449	dirt
+2023 KTM 690 SMC R	12399	$207/MO	690	supermoto
+2023 Kawasaki KX450	9699	$162/MO	449	dirt
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 SWM SM 500R	8999	$150/MO	501	supermoto
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 Ducati Monster SP	15495	$258/MO	937	naked
+2023 Ducati Monster SP	15495	$258/MO	937	naked
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 SWM SM 500R	8999	$150/MO	501	supermoto
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 KTM 690 SMC R	12399	$207/MO	690	supermoto
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Husqvarna 701 Supermoto	12499	$208/MO	692	supermoto
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 KTM 690 SMC R	12399	$207/MO	690	supermoto
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 BMW R 1250 GS Adventure	20995	$350/MO	1254	adventure
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 Ducati Monster SP	15495	$258/MO	937	naked
+2023 Kawasaki KX450	9699	$162/MO	449	dirt
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 Kawasaki KX450	9699	$162/MO	449	dirt
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Ducati Multistrada V4 S	25995	$433/MO	1158	adventure
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 KTM 450 SX-F	11299	$188/MO	449	dirt
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 Ducati Multistrada V4 S	25995	$433/MO	1158	adventure
+2023 SWM SM 500R	8999	$150/MO	501	supermoto
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 SWM SM 500R	8999	$150/MO	501	supermoto
+2023 KTM 690 SMC R	12399	$207/MO	690	supermoto
+2023 BMW R 1250 GS Adventure	20995	$350/MO	1254	adventure
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 Honda CRF450R	9599	$160/MO	449	dirt
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 KTM 690 SMC R	12399	$207/MO	690	supermoto
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Ducati Multistrada V4 S	25995	$433/MO	1158	adventure
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 Ducati Hypermotard 950 SP	17995	$300/MO	937	supermoto
+2023 BMW R 1250 GS Adventure	20995	$350/MO	1254	adventure
+2023 Yamaha YZF-R1	17599	$293/MO	998	supersport
+2023 Ducati Multistrada V4 S	25995	$433/MO	1158	adventure
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 SWM SM 500R	8999	$150/MO	501	supermoto
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 Kawasaki KX450	9699	$162/MO	449	dirt
+2023 Triumph Street Triple RS	12995	$217/MO	765	naked
+2023 Honda Africa Twin CRF1100L	14999	$250/MO	1084	adventure
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 SWM SM 500R	8999	$150/MO	501	supermoto
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport
+2023 Yamaha MT-10	13999	$233/MO	998	naked
+2023 BMW R 1250 GS Adventure	20995	$350/MO	1254	adventure
+2023 Suzuki GSX-R1000R	18499	$308/MO	999	supersport
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport
+2023 KTM 1290 Super Adventure R	20999	$350/MO	1301	adventure
+2023 Kawasaki Ninja ZX-10R	17399	$290/MO	998	supersport
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport
+2023 KTM 1290 Super Duke R	19999	$333/MO	1301	naked
+2023 Yamaha YZ450F	9799	$163/MO	450	dirt
+2023 Honda CBR1000RR-R Fireblade SP	28999	$483/MO	999	supersport

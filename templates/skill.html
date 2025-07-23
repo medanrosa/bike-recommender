@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skill Level</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>What is your riding skill level?</h2>
+    <form method="post">
+      <select name="skill" required>
+        <option value="" disabled selected>Select skill</option>
+        <option value="beginner">Beginner (just started riding)</option>
+        <option value="intermediate">Intermediate (1–2 years)</option>
+        <option value="expert">Expert (3+ years)</option>
+      </select><br>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+</body>
+</html>

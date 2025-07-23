@@ -1,0 +1,40 @@
+import pandas as pd
+
+def load_data(path: str) -> pd.DataFrame:
+    """
+    Load the bike dataset from an Excel file.
+    """
+    return pd.read_excel(path)
+
+def impute_missing_riding_style(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    A small manual mapping for any bike_name whose riding_style you
+    need to fill in by looking it up online. Expand this dict as needed.
+    """
+    lookup = {
+        # example entries — you must look up each missing model yourself and add here:
+        "2021 Slingshot SL Autodrive": "autocycle",
+        "2019 Slingshot SL":              "autocycle",
+        # … etc …
+    }
+    df['riding_style'] = df.apply(
+        lambda r: lookup.get(r['bike_name'], r['riding_style']),
+        axis=1
+    )
+    return df
+
+def preprocess(df: pd.DataFrame) -> pd.DataFrame:
+    # 1) fill missing styles
+    df = impute_missing_riding_style(df)
+
+    # 2) drop any rows still missing core specs
+    df = df.dropna(subset=['engine_size','riding_style','price'])
+
+    # 3) ensure numeric types
+    df['engine_size'] = df['engine_size'].astype(int)
+    df['price']       = df['price'].astype(int)
+
+    # 4) encode riding_style as a category code
+    df['riding_style_code'] = df['riding_style'].astype('category').cat.codes
+
+    return df

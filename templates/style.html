@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Riding Style</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Which style do you prefer?</h2>
+    <form method="post">
+      <select name="style" required>
+        <option value="" disabled selected>Select style</option>
+        <option value="supermoto">Supermoto</option>
+        <option value="naked">Naked</option>
+      </select><br>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+</body>
+</html>

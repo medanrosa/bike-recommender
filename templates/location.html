@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Geographical Relevance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Where do you live?</h2>
+    <form method="post">
+      <select name="location" required>
+        <option value="" disabled selected>Select terrain</option>
+        <option value="hill">Hill / Mountain area</option>
+        <option value="small_city">Small city</option>
+        <option value="highway">Lots of highway</option>
+        <option value="dirt">Dirt road / Forest area</option>
+      </select><br>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+</body>
+</html>

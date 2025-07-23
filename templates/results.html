@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Bike Matches</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Recommended Bikes for You</h2>
+    {% if bikes %}
+      <table>
+        <tr>
+          <th>Bike Name</th>
+          <th>Price (USD)</th>
+          <th>Engine Size (cc)</th>
+          <th>Riding Style</th>
+        </tr>
+        {% for bike in bikes %}
+        <tr>
+          <td>{{ bike.bike_name }}</td>
+          <td>${{ bike.price }}</td>
+          <td>{{ bike.engine_size }}</td>
+          <td>{{ bike.riding_style.capitalize() }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>No bikes match your criteria. Try expanding your budget or changing your style preference.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
