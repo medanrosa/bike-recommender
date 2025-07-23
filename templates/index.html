@@ -1,58 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bike Recommender</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            padding: 50px;
-        }
-        form {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-        input, select {
-            margin: 10px;
-            padding: 8px;
-            width: 250px;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Bike Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Motorcycle Recommender</h2>
-    <form method="POST" action="/predict">
-        <input type="number" name="engine_size" placeholder="Engine Size (cc)" required><br>
-        <input type="number" name="price" placeholder="Price (USD)" required><br>
-        <select name="bike_name" required>
-            <option value="0">Honda CBR500R</option>
-            <option value="1">Yamaha MT-07</option>
-            <option value="2">KTM Duke 390</option>
-            <!-- Replace these with actual encoded values from your dataset -->
-        </select><br>
-        <select name="riding_style" required>
-            <option value="0">Naked</option>
-            <option value="1">Supersport</option>
-            <option value="2">Adventure</option>
-            <option value="3">Dirt</option>
-            <option value="4">Supermoto</option>
-            <!-- Use your encoded values -->
-        </select><br>
-        <button type="submit">Recommend</button>
-    </form>
-
-    {% if prediction %}
-        <h3>Recommended Class: {{ prediction }}</h3>
-    {% endif %}
+  <h1>Welcome to the Motorcycle Recommender</h1>
+  <p>We’ll ask four quick questions to find your ideal bike.</p>
+  <a href="{{ url_for('skill') }}">
+    <button class="btn">Start</button>
+  </a>
 </body>
 </html>

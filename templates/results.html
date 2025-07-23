@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Your Bike Matches</title>
+  <meta charset="utf-8">
+  <title>Your Recommendations</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h2>Recommended Bikes for You</h2>
-    {% if bikes %}
-      <table>
+  {% if error %}
+    <h2>{{ error }}</h2>
+    <a href="{{ url_for('index') }}"><button class="btn">Start Over</button></a>
+  {% else %}
+    <h2>Top 5 Bike Recommendations</h2>
+    <table>
+      <thead>
         <tr>
           <th>Bike Name</th>
+          <th>Engine (cc)</th>
+          <th>Style</th>
           <th>Price (USD)</th>
-          <th>Engine Size (cc)</th>
-          <th>Riding Style</th>
+          <th>Score</th>
         </tr>
-        {% for bike in bikes %}
+      </thead>
+      <tbody>
+        {% for b in bikes %}
         <tr>
-          <td>{{ bike.bike_name }}</td>
-          <td>${{ bike.price }}</td>
-          <td>{{ bike.engine_size }}</td>
-          <td>{{ bike.riding_style.capitalize() }}</td>
+          <td>{{ b.bike_name }}</td>
+          <td>{{ b.engine_size }}</td>
+          <td>{{ b.riding_style }}</td>
+          <td>{{ b.price }}</td>
+          <td>{{ "%.3f"|format(b.score) }}</td>
         </tr>
         {% endfor %}
-      </table>
-    {% else %}
-      <p>No bikes match your criteria. Try expanding your budget or changing your style preference.</p>
-    {% endif %}
-  </div>
+      </tbody>
+    </table>
+    <a href="{{ url_for('index') }}"><button class="btn">Start Over</button></a>
+  {% endif %}
 </body>
 </html>
