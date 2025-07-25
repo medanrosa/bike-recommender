@@ -14,8 +14,12 @@ def impute_missing_riding_style(df: pd.DataFrame) -> pd.DataFrame:
         # e.g. "2019 Slingshot SL": "autocycle",
         # …add any bikes you looked up by hand…
     }
+
     def infer(name):
         m = str(name).lower()
+        # commuter keywords
+        if any(k in m for k in ["commute", "commuter", "city run", "urban"]):
+            return "commuter"
         if any(k in m for k in ["r1","r6","cbr","gsx-r","ninja","yzf","panigale","rc","rs","rr"]):
             return "supersport"
         if "supermoto" in m:
@@ -26,6 +30,15 @@ def impute_missing_riding_style(df: pd.DataFrame) -> pd.DataFrame:
             return "dirtbike"
         if any(k in m for k in ["mt","street","fz","sv","monster","scr","duke","gt"]):
             return "naked"
+        # fallback to commuter if sub-500cc common commuter capacity
+        try:
+            if "cc" in name:
+                cc = int(''.join(filter(str.isdigit, name.split("cc")[0].strip())))
+                if cc <= 300:
+                    return "commuter"
+        except Exception:
+            pass
+        # default to naked if nothing else
         return "naked"
 
     # 1) manual fill
@@ -54,17 +67,20 @@ def preprocess(df: pd.DataFrame) -> pd.DataFrame:
     df["engine_size"] = df["engine_size"].astype(int)
     df["price"]       = df["price"].astype(int)
 
-    # 3) map to codes
+    # 3) map to codes (added commuter:6)
     style_map = {
-        "supersport": 0, "supermoto":  1,
-        "naked":      2, "touring":    3,
-        "dirtbike":   4, "autocycle":  5
+        "supersport": 0,
+        "supermoto":  1,
+        "naked":      2,
+        "touring":    3,
+        "dirtbike":   4,
+        "autocycle":  5,
+        "commuter":   6
     }
     df["riding_style_code"] = df["riding_style"].map(style_map)
 
-    # ─── NEW: drop any rows where mapping failed ─────────────────
+    # 4) drop any rows where mapping failed
     df = df.dropna(subset=["riding_style_code"]).copy()
     df["riding_style_code"] = df["riding_style_code"].astype(int)
-    # ───────────────────────────────────────────────────────────────
 
     return df
