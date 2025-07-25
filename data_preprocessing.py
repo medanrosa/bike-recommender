@@ -46,13 +46,25 @@ def impute_missing_riding_style(df: pd.DataFrame) -> pd.DataFrame:
 
 def preprocess(df: pd.DataFrame) -> pd.DataFrame:
     df = impute_missing_riding_style(df)
-    df = df.dropna(subset=["engine_size","price","riding_style"]).copy()
+
+    # 1) drop rows missing the raw fields
+    df = df.dropna(subset=["engine_size", "price", "riding_style"]).copy()
+
+    # 2) convert types
     df["engine_size"] = df["engine_size"].astype(int)
     df["price"]       = df["price"].astype(int)
+
+    # 3) map to codes
     style_map = {
-        "supersport": 0, "supermoto": 1,
-        "naked":      2, "touring":   3,
-        "dirtbike":   4, "autocycle": 5
+        "supersport": 0, "supermoto":  1,
+        "naked":      2, "touring":    3,
+        "dirtbike":   4, "autocycle":  5
     }
     df["riding_style_code"] = df["riding_style"].map(style_map)
+
+    # ─── NEW: drop any rows where mapping failed ─────────────────
+    df = df.dropna(subset=["riding_style_code"]).copy()
+    df["riding_style_code"] = df["riding_style_code"].astype(int)
+    # ───────────────────────────────────────────────────────────────
+
     return df
