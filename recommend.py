@@ -1,19 +1,33 @@
-def filter_by_rules(df, user):
-    # beginner → ≤500cc
+import pandas as pd
+
+def filter_by_rules(df: pd.DataFrame, user: dict) -> pd.DataFrame:
+    """
+    Hard filters before model scoring:
+      - Beginner safety cap (<=500cc)
+      - Geography -> allowed riding styles (no user-chosen style)
+      - Budget cap
+    """
+    df = df.copy()
+
+    # Beginner → ≤500cc
     if user["experience_level"] == 0:
         df = df[df.engine_size <= 500]
 
-    # geography rules
+    # Geography -> allowed style sets
+    # geo codes: 0=mountain, 1=coastal, 2=city, 3=small_town, 4=highway, 5=back_roads
+    allowed_styles_by_geo = {
+        4: ["supersport", "touring", "naked"],                 # highway
+        0: ["dirtbike", "supermoto", "touring", "naked"],      # mountain
+        5: ["dirtbike", "supermoto", "touring"],               # back roads / forest
+        2: ["naked", "supermoto", "commuter"],                 # city
+        3: ["naked", "supermoto", "dirtbike", "commuter"],     # small town / village
+        1: ["touring", "naked", "supersport"],                 # coastal
+    }
     geo = user["geography"]
-    if   geo == 4:              # highway
-        df = df[~df.riding_style.isin(["dirtbike","supermoto"])]
-    elif geo in [0,5]:          # mountain or back_roads
-        df = df[df.riding_style.isin(["dirtbike","touring","supermoto"])]
-    elif geo == 2:              # city
-        df = df[df.riding_style.isin(["naked","supermoto"])]
-    # preferred style
-    df = df[df.riding_style_code == user["preferred_style"]]
+    allowed = allowed_styles_by_geo.get(geo, None)
+    if allowed:
+        df = df[df.riding_style.isin(allowed)]
 
-    # budget cap
+    # Budget cap
     df = df[df.price <= user["budget"]]
     return df

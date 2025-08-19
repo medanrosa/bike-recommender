@@ -8,12 +8,18 @@ from joblib import dump
 from data_preprocessing import load_data, preprocess
 
 def compute_suitability_score(df: pd.DataFrame) -> pd.Series:
+    # Added a weight for "commuter" as requested
     style_weights = {
-        "supersport": 0.9, "supermoto":  0.7,
-        "naked":      0.8, "touring":    0.85,
-        "dirtbike":   0.6, "autocycle":  0.5
+        "supersport": 0.90,
+        "supermoto":  0.70,
+        "naked":      0.80,
+        "touring":    0.85,
+        "dirtbike":   0.60,
+        "autocycle":  0.50,
+        "commuter":   0.75,
     }
-    df["style_weight"] = df["riding_style"].map(style_weights).fillna(0.5)
+    df = df.copy()
+    df["style_weight"] = df["riding_style"].map(style_weights).fillna(0.50)
     eng_norm   = df["engine_size"] / df["engine_size"].max()
     price_norm = df["price"] / df["price"].max()
     price_suit = 1 - price_norm
@@ -39,10 +45,7 @@ if __name__ == "__main__":
     y_pred = model.predict(X_test)
     print(f"✅ R²: {r2_score(y_test, y_pred):.4f} | MSE: {mean_squared_error(y_test, y_pred):.6f}")
 
-    plt.bar(
-        ["engine_size","riding_style_code","price"],
-        model.feature_importances_
-    )
+    plt.bar(["engine_size","riding_style_code","price"], model.feature_importances_)
     plt.ylabel("Relative importance")
     plt.tight_layout()
     plt.show()

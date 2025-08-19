@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Step 4 – Budget</title>
+  <title>Step 3 – Budget</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h2>4) What's your maximum budget (USD)?</h2>
+  <h2>3) What's your maximum budget (USD)?</h2>
   <form method="post">
-    <input name="budget" type="number" min="0" required>
-    <button class="btn" type="submit">Get Recommendations →</button>
+    <input name="budget" type="number" min="0" step="1" required />
+    <button class="btn" type="submit">Get recommendations →</button>
   </form>
 </body>
 </html>

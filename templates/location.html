@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Step 3 – Geography</title>
+  <title>Step 2 – Location</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h2>3) Where do you ride most?</h2>
+  <h2>2) Where do you ride most?</h2>
   <form method="post">
     <select name="geography" required>
       <option value="mountain">Mountain area</option>
       <option value="coastal">Coastal area</option>
       <option value="city">City</option>
-      <option value="small_town">Small town/village</option>
-      <option value="highway">Highway</option>
-      <option value="back_roads">Back roads/forest</option>
+      <option value="small_town">Small town or village</option>
+      <option value="highway">Highway area</option>
+      <option value="back_roads">Back roads / forest or dirt roads</option>
     </select>
     <button class="btn" type="submit">Next →</button>
   </form>
