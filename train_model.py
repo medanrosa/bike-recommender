@@ -8,7 +8,9 @@ from joblib import dump
 from data_preprocessing import load_data, preprocess
 
 def compute_suitability_score(df: pd.DataFrame) -> pd.Series:
-    # Added a weight for "commuter" as requested
+    """
+    Heuristic target for training. Includes all canonical styles.
+    """
     style_weights = {
         "supersport": 0.90,
         "supermoto":  0.70,
@@ -17,12 +19,18 @@ def compute_suitability_score(df: pd.DataFrame) -> pd.Series:
         "dirtbike":   0.60,
         "autocycle":  0.50,
         "commuter":   0.75,
+        "cruiser":    0.82,
+        "adventure":  0.78,
     }
     df = df.copy()
     df["style_weight"] = df["riding_style"].map(style_weights).fillna(0.50)
+
+    # Normalize engine & price
     eng_norm   = df["engine_size"] / df["engine_size"].max()
     price_norm = df["price"] / df["price"].max()
     price_suit = 1 - price_norm
+
+    # Weighted combination
     score = 0.4 * eng_norm + 0.3 * price_suit + 0.3 * df["style_weight"]
     return score.clip(0.0, 1.0)
 
