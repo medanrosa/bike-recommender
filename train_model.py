@@ -8,43 +8,27 @@ from joblib import dump
 from data_preprocessing import load_data, preprocess
 
 def compute_suitability_score(df: pd.DataFrame) -> pd.Series:
-    """
-    Heuristic target for training. Includes all canonical styles.
-    """
+    """Heuristic target for training."""
     style_weights = {
-        "supersport": 0.90,
-        "supermoto":  0.70,
-        "naked":      0.80,
-        "touring":    0.85,
-        "dirtbike":   0.60,
-        "autocycle":  0.50,
-        "commuter":   0.75,
-        "cruiser":    0.82,
-        "adventure":  0.78,
+        "supersport": 0.90, "supermoto": 0.70, "naked": 0.80,
+        "touring": 0.85, "dirtbike": 0.60, "autocycle": 0.50,
+        "commuter": 0.75, "cruiser": 0.82, "adventure": 0.78,
     }
     df = df.copy()
     df["style_weight"] = df["riding_style"].map(style_weights).fillna(0.50)
-
-    # Normalize engine & price
     eng_norm   = df["engine_size"] / df["engine_size"].max()
     price_norm = df["price"] / df["price"].max()
-    price_suit = 1 - price_norm
-
-    # Weighted combination
-    score = 0.4 * eng_norm + 0.3 * price_suit + 0.3 * df["style_weight"]
+    score = 0.4 * eng_norm + 0.3 * (1 - price_norm) + 0.3 * df["style_weight"]
     return score.clip(0.0, 1.0)
 
 if __name__ == "__main__":
-    df = load_data("completed_bike_dataset.xlsx")
-    df = preprocess(df)
+    df = preprocess(load_data("completed_bike_dataset.xlsx"))
     df["suitability_score"] = compute_suitability_score(df)
 
-    X = df[["engine_size","riding_style_code","price"]]
+    X = df[["engine_size", "riding_style_code", "price"]]
     y = df["suitability_score"]
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     model = RandomForestRegressor(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
@@ -54,6 +38,4 @@ if __name__ == "__main__":
     print(f"✅ R²: {r2_score(y_test, y_pred):.4f} | MSE: {mean_squared_error(y_test, y_pred):.6f}")
 
     plt.bar(["engine_size","riding_style_code","price"], model.feature_importances_)
-    plt.ylabel("Relative importance")
-    plt.tight_layout()
-    plt.show()
+    plt.ylabel("Relative importance"); plt.tight_layout(); plt.show()
