@@ -1,0 +1,7 @@
+﻿~$*.xlsx
+~$*.xls
+~$*.doc*
+~$*.ppt*
+*.tmp
+*.lock
+
