@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Step 1 – Experience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <h2>1) What's your riding experience?</h2>
-  <form method="post">
-    <select name="experience_level" required>
-      <option value="0">Beginner (new to riding)</option>
-      <option value="1">Intermediate (2–3 years)</option>
-      <option value="2">Expert (4+ years)</option>
-    </select>
-    <button class="btn" type="submit">Next →</button>
-  </form>
+<body class="bg">
+  <header class="nav">
+    <div class="brand">
+      <span class="logo">🏍️</span>
+      <span class="brand-text">MotoMatch</span>
+    </div>
+    <div class="steps">Step 1 of 3</div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2 class="title">What’s your riding experience?</h2>
+      <p class="hint">We’ll cap engine size for safety if you’re just starting out.</p>
+
+      <form method="post" class="form">
+        <label class="field">
+          <span class="label">Experience level</span>
+          <select name="experience_level" required class="select">
+            <option value="0">Beginner (new to riding)</option>
+            <option value="1">Intermediate (2–3 years)</option>
+            <option value="2">Expert (4+ years)</option>
+          </select>
+        </label>
+
+        <div class="actions">
+          <a class="btn btn-ghost" href="{{ url_for('index') }}">← Back</a>
+          <button class="btn btn-primary" type="submit">Next →</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Step 1 • Experience</span>
+  </footer>
 </body>
 </html>

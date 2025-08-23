@@ -1,15 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Step 4 – Budget</title>
+  <title>Step 3 – Budget</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <h2>4) What's your maximum budget (USD)?</h2>
-  <form method="post">
-    <input name="budget" type="number" min="0" required>
-    <button class="btn" type="submit">Get Recommendations →</button>
-  </form>
+<body class="bg">
+  <header class="nav">
+    <div class="brand">
+      <span class="logo">🏍️</span>
+      <span class="brand-text">MotoMatch</span>
+    </div>
+    <div class="steps">Step 3 of 3</div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2 class="title">What’s your maximum budget (USD)?</h2>
+      <p class="hint">We’ll only recommend bikes within your limit.</p>
+
+      <form method="post" class="form">
+        <label class="field">
+          <span class="label">Budget</span>
+          <input name="budget" type="number" min="0" step="1" required class="input" placeholder="e.g., 12000" />
+        </label>
+
+        <div class="actions">
+          <a class="btn btn-ghost" href="{{ url_for('location') }}">← Back</a>
+          <button class="btn btn-primary" type="submit">Get recommendations →</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Step 3 • Budget</span>
+  </footer>
 </body>
 </html>

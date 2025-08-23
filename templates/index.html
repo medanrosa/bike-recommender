@@ -1,15 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Bike Recommender</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <h1>Welcome to the Motorcycle Recommender</h1>
-  <p>We’ll ask four quick questions to find your ideal bike.</p>
-  <a href="{{ url_for('skill') }}">
-    <button class="btn">Start</button>
-  </a>
+<body class="bg">
+  <header class="nav">
+    <div class="brand">
+      <span class="logo">🏍️</span>
+      <span class="brand-text">MotoMatch</span>
+    </div>
+  </header>
+
+  <main class="container hero">
+    <section class="card card-hero">
+      <h1 class="title-xl">Find your ride, your way.</h1>
+      <p class="subtitle">Answer <b>three quick questions</b> and we’ll match you to the right motorcycle—by skill, terrain, and budget.</p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('skill') }}">Start now →</a>
+
+      <div class="hero-stats">
+        <div class="pill">Smart Rules + ML Ranking</div>
+        <div class="pill">Real‑world riding styles</div>
+        <div class="pill">Budget‑aware picks</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© {{ 2025 }} MotoMatch</span>
+  </footer>
 </body>
 </html>

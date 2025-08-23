@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Step 2 – Location</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <h2>2) Where do you ride most?</h2>
-  <form method="post">
-    <select name="geography" required>
-      <option value="mountain">Mountain area</option>
-      <option value="coastal">Coastal area</option>
-      <option value="city">City</option>
-      <option value="small_town">Small town or village</option>
-      <option value="highway">Highway area</option>
-      <option value="back_roads">Back roads / forest or dirt roads</option>
-    </select>
-    <button class="btn" type="submit">Next →</button>
-  </form>
+<body class="bg">
+  <header class="nav">
+    <div class="brand">
+      <span class="logo">🏍️</span>
+      <span class="brand-text">MotoMatch</span>
+    </div>
+    <div class="steps">Step 2 of 3</div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2 class="title">Where do you ride most?</h2>
+      <p class="hint">We’ll automatically choose styles that suit your terrain.</p>
+
+      <form method="post" class="form">
+        <label class="field">
+          <span class="label">Primary terrain</span>
+          <select name="geography" required class="select">
+            <option value="mountain">Mountain area</option>
+            <option value="coastal">Coastal area</option>
+            <option value="city">City</option>
+            <option value="small_town">Small town or village</option>
+            <option value="highway">Highway area</option>
+            <option value="back_roads">Back roads / forest or dirt roads</option>
+          </select>
+        </label>
+
+        <div class="actions">
+          <a class="btn btn-ghost" href="{{ url_for('skill') }}">← Back</a>
+          <button class="btn btn-primary" type="submit">Next →</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Step 2 • Location</span>
+  </footer>
 </body>
 </html>
