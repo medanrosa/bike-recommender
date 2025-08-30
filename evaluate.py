@@ -20,25 +20,21 @@ def recall_at_k(y_true_sets, y_pred_lists, k=5):
     ])
 
 def ndcg_at_k(y_true_sets, y_pred_lists, k=5):
-    """Binary relevance NDCG@K against a set of relevant items."""
-    def dcg(relevances):
-        return sum(rel/np.log2(idx+2) for idx, rel in enumerate(relevances))
+    def dcg(rels): return sum(rel/np.log2(i+2) for i, rel in enumerate(rels))
     scores = []
     for true_set, pred in zip(y_true_sets, y_pred_lists):
-        pred_topk = pred[:k]
-        rel = [1 if pid in true_set else 0 for pid in pred_topk]
+        rel = [1 if pid in true_set else 0 for pid in pred[:k]]
         ideal = sorted(rel, reverse=True)
         denom = dcg(ideal) or 1.0
         scores.append(dcg(rel)/denom)
     return float(np.mean(scores))
 
 if __name__ == "__main__":
-    # 1) Data & model
     df = preprocess(load_data("completed_bike_dataset.xlsx"))
     df["suitability_score"] = compute_suitability_score(df)
+
     model = load("bike_suitability_rf.joblib")
 
-    # 2) Predict on full dataset (model fit quality)
     X = df[["engine_size","riding_style_code","price"]].values
     y_true = df["suitability_score"].values
     y_pred = model.predict(X)
@@ -48,18 +44,16 @@ if __name__ == "__main__":
     rho, _ = spearmanr(y_true, y_pred)
     print(f"✅ Spearman rank corr: {rho:.6f}")
 
-    # 3) Recommendation quality (top-K) vs heuristic ground truth
     df_eval = df.copy()
     df_eval["pred_score"] = y_pred
 
-    # Treat top-M by heuristic as "relevant"; evaluate how many the RF puts in top-K
     M, K = 20, 5
     gt_top = set(df_eval.sort_values("suitability_score", ascending=False).head(M).index)
     rf_top = list(df_eval.sort_values("pred_score", ascending=False).index)
 
-    y_true_sets = [gt_top]            # single global scenario
+    y_true_sets = [gt_top]
     y_pred_lists = [rf_top]
 
-    print(f"Precision@{K}: {precision_at_k(y_true_sets,y_pred_lists,K):.4f}")
-    print(f"Recall@{K}:    {recall_at_k(y_true_sets,y_pred_lists,K):.4f}")
-    print(f"NDCG@{K}:      {ndcg_at_k(y_true_sets,y_pred_lists,K):.4f}")
+    print(f"Precision@{K}: {precision_at_k(y_true_sets, y_pred_lists, K):.4f}")
+    print(f"Recall@{K}:    {recall_at_k(y_true_sets, y_pred_lists, K):.4f}")
+    print(f"NDCG@{K}:      {ndcg_at_k(y_true_sets, y_pred_lists, K):.4f}")
