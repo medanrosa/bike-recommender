@@ -40,23 +40,24 @@ if __name__ == "__main__":
         X, y, test_size=0.2, random_state=42
     )
 
-    # Strong defaults in case search is interrupted
+    # Fallback params (fast & strong)
     fallback_params = dict(
         n_estimators=600,
         max_depth=16,
         min_samples_split=4,
         min_samples_leaf=2,
-        max_features="sqrt",
+        max_features="sqrt",   # <— valid in new sklearn
         bootstrap=True,
     )
 
-    # 4) Lightweight randomized search (fast in Colab)
+    # 4) Lightweight randomized search (Colab-friendly)
     param_distributions = {
         "n_estimators":      [300, 500, 700, 900],
         "max_depth":         [8, 12, 16, 24, 32, None],
         "min_samples_split": [2, 4, 6, 8, 10, 12, 16],
         "min_samples_leaf":  [1, 2, 3, 4, 5],
-        "max_features":      ["auto", "sqrt", 1.0],
+        # removed "auto" to avoid InvalidParameterError on newer sklearn
+        "max_features":      ["sqrt", 1.0, None],
         "bootstrap":         [True],
     }
 
@@ -66,9 +67,9 @@ if __name__ == "__main__":
         search = RandomizedSearchCV(
             estimator=base_rf,
             param_distributions=param_distributions,
-            n_iter=12,          # small, quick, but effective
+            n_iter=12,          # quick search
             scoring="r2",
-            cv=3,               # lighter than 5-fold for Colab
+            cv=3,
             random_state=42,
             n_jobs=-1,
             verbose=0
@@ -96,7 +97,7 @@ if __name__ == "__main__":
     dump(final_rf, "bike_suitability_rf.joblib")
     print("💾 Saved model -> bike_suitability_rf.joblib")
 
-    # 7) Feature importances (optional visualization)
+    # 7) Feature importances (optional)
     try:
         plt.bar(["engine_size","riding_style_code","price"], final_rf.feature_importances_)
         plt.ylabel("Relative importance")
