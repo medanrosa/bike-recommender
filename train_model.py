@@ -1,41 +1,102 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.utils.fixes import loguniform
+from scipy.stats import randint
 from joblib import dump
 
 from data_preprocessing import load_data, preprocess
 
 def compute_suitability_score(df: pd.DataFrame) -> pd.Series:
-    """Heuristic target for training."""
+    """
+    Heuristic target for training. Includes all canonical styles.
+    """
     style_weights = {
-        "supersport": 0.90, "supermoto": 0.70, "naked": 0.80,
-        "touring": 0.85, "dirtbike": 0.60, "autocycle": 0.50,
-        "commuter": 0.75, "cruiser": 0.82, "adventure": 0.78,
+        "supersport": 0.90, "supermoto":  0.70, "naked": 0.80,
+        "touring":    0.85, "dirtbike":   0.60, "autocycle": 0.50,
+        "commuter":   0.75, "cruiser":    0.82, "adventure": 0.78,
     }
     df = df.copy()
     df["style_weight"] = df["riding_style"].map(style_weights).fillna(0.50)
-    eng_norm   = df["engine_size"] / df["engine_size"].max()
-    price_norm = df["price"] / df["price"].max()
-    score = 0.4 * eng_norm + 0.3 * (1 - price_norm) + 0.3 * df["style_weight"]
+
+    # Normalize engine & price (bounded to avoid div-by-zero)
+    eng_norm   = df["engine_size"] / max(1, df["engine_size"].max())
+    price_norm = df["price"] / max(1, df["price"].max())
+    price_suit = 1 - price_norm
+
+    score = 0.4 * eng_norm + 0.3 * price_suit + 0.3 * df["style_weight"]
     return score.clip(0.0, 1.0)
 
 if __name__ == "__main__":
+    # 1) Load & preprocess
     df = preprocess(load_data("completed_bike_dataset.xlsx"))
     df["suitability_score"] = compute_suitability_score(df)
 
-    X = df[["engine_size", "riding_style_code", "price"]]
-    y = df["suitability_score"]
+    # 2) Features (kept identical to app.py inference)
+    X = df[["engine_size","riding_style_code","price"]].values
+    y = df["suitability_score"].values
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # 3) Train/validation split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
 
-    model = RandomForestRegressor(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    dump(model, "bike_suitability_rf.joblib")
+    # 4) Hyper-parameter search space for Random Forest
+    #    (robust, wide, but efficient with RandomizedSearchCV)
+    param_distributions = {
+        "n_estimators": randint(200, 900),
+        "max_depth": randint(5, 40),            # deeper than default
+        "min_samples_split": randint(2, 20),
+        "min_samples_leaf": randint(1, 10),
+        "max_features": ["auto", "sqrt", 1.0],  # try sqrt and all
+        "bootstrap": [True],                    # enable OOB if you like
+    }
 
-    y_pred = model.predict(X_test)
-    print(f"✅ R²: {r2_score(y_test, y_pred):.4f} | MSE: {mean_squared_error(y_test, y_pred):.6f}")
+    base_rf = RandomForestRegressor(
+        random_state=42,
+        n_jobs=-1
+    )
 
-    plt.bar(["engine_size","riding_style_code","price"], model.feature_importances_)
-    plt.ylabel("Relative importance"); plt.tight_layout(); plt.show()
+    search = RandomizedSearchCV(
+        estimator=base_rf,
+        param_distributions=param_distributions,
+        n_iter=50,               # reasonable budget; increase if you want
+        scoring="r2",
+        cv=5,
+        verbose=0,
+        random_state=42,
+        n_jobs=-1
+    )
+
+    # 5) Search + evaluate
+    search.fit(X_train, y_train)
+    best_rf = search.best_estimator_
+
+    y_pred = best_rf.predict(X_test)
+    r2  = r2_score(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+
+    print("=== Random Forest (tuned) ===")
+    print("Best params:", search.best_params_)
+    print(f"✅ R² (test): {r2:.4f} | MSE (test): {mse:.6f}")
+
+    # 6) Refit on full data with best params (for deployment)
+    final_rf = RandomForestRegressor(
+        **search.best_params_,
+        random_state=42,
+        n_jobs=-1
+    )
+    final_rf.fit(X, y)
+    dump(final_rf, "bike_suitability_rf.joblib")
+    print("💾 Saved model -> bike_suitability_rf.joblib")
+
+    # 7) Feature importances (for quick visibility)
+    plt.figure(figsize=(6,4))
+    plt.bar(["engine_size","riding_style_code","price"], final_rf.feature_importances_)
+    plt.ylabel("Relative importance")
+    plt.tight_layout()
+    plt.show()
