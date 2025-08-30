@@ -40,7 +40,17 @@ if __name__ == "__main__":
         X, y, test_size=0.2, random_state=42
     )
 
-    # 4) RandomizedSearchCV over RF (no SciPy; pure Python lists)
+    # Strong defaults in case search is interrupted
+    fallback_params = dict(
+        n_estimators=600,
+        max_depth=16,
+        min_samples_split=4,
+        min_samples_leaf=2,
+        max_features="sqrt",
+        bootstrap=True,
+    )
+
+    # 4) Lightweight randomized search (fast in Colab)
     param_distributions = {
         "n_estimators":      [300, 500, 700, 900],
         "max_depth":         [8, 12, 16, 24, 32, None],
@@ -51,33 +61,46 @@ if __name__ == "__main__":
     }
 
     base_rf = RandomForestRegressor(random_state=42, n_jobs=-1)
-    search = RandomizedSearchCV(
-        estimator=base_rf,
-        param_distributions=param_distributions,
-        n_iter=40,          # increase for more thorough search if you like
-        scoring="r2",
-        cv=5,
-        random_state=42,
-        n_jobs=-1,
-        verbose=0
-    )
-    search.fit(X_train, y_train)
-    best_rf = search.best_estimator_
+
+    try:
+        search = RandomizedSearchCV(
+            estimator=base_rf,
+            param_distributions=param_distributions,
+            n_iter=12,          # small, quick, but effective
+            scoring="r2",
+            cv=3,               # lighter than 5-fold for Colab
+            random_state=42,
+            n_jobs=-1,
+            verbose=0
+        )
+        search.fit(X_train, y_train)
+        best_params = search.best_params_
+        best_rf = search.best_estimator_
+        print("Best params (search):", best_params)
+    except Exception as e:
+        print("⚠️ Hyperparameter search skipped/fell back due to:", repr(e))
+        best_params = fallback_params
+        best_rf = RandomForestRegressor(**best_params, random_state=42, n_jobs=-1)
+        best_rf.fit(X_train, y_train)
 
     # 5) Test metrics
     y_pred = best_rf.predict(X_test)
-    print("=== Random Forest (tuned) ===")
-    print("Best params:", search.best_params_)
-    print(f"✅ R² (test): {r2_score(y_test, y_pred):.4f} | MSE (test): {mean_squared_error(y_test, y_pred):.6f}")
+    r2  = r2_score(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    print(f"✅ R² (test): {r2:.4f} | MSE (test): {mse:.6f}")
 
-    # 6) Refit on full data & save
-    final_rf = RandomForestRegressor(**search.best_params_, random_state=42, n_jobs=-1)
+    # 6) Refit on full data & save (always)
+    final_rf = RandomForestRegressor(**best_rf.get_params())
+    final_rf.set_params(random_state=42, n_jobs=-1)
     final_rf.fit(X, y)
     dump(final_rf, "bike_suitability_rf.joblib")
     print("💾 Saved model -> bike_suitability_rf.joblib")
 
-    # 7) Feature importances
-    plt.bar(["engine_size", "riding_style_code", "price"], final_rf.feature_importances_)
-    plt.ylabel("Relative importance")
-    plt.tight_layout()
-    plt.show()
+    # 7) Feature importances (optional visualization)
+    try:
+        plt.bar(["engine_size","riding_style_code","price"], final_rf.feature_importances_)
+        plt.ylabel("Relative importance")
+        plt.tight_layout()
+        plt.show()
+    except Exception:
+        pass

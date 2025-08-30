@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 from joblib import load
@@ -38,12 +39,14 @@ def ndcg_at_k(y_true_sets, y_pred_lists, k=5):
     return float(np.mean(scores))
 
 if __name__ == "__main__":
-    # 1) Data + model
+    if not os.path.exists("bike_suitability_rf.joblib"):
+        raise FileNotFoundError("bike_suitability_rf.joblib not found. Run `python train_model.py` first.")
+
     df = preprocess(load_data("completed_bike_dataset.xlsx"))
     df["suitability_score"] = compute_suitability_score(df)
+
     model = load("bike_suitability_rf.joblib")
 
-    # 2) Predictions over the whole dataset
     X = df[["engine_size","riding_style_code","price"]].values
     y_true = df["suitability_score"].values
     y_pred = model.predict(X)
@@ -52,7 +55,7 @@ if __name__ == "__main__":
     print(f"✅ Overall MSE: {mean_squared_error(y_true, y_pred):.6f}")
     print(f"✅ Spearman rank corr: {_spearman_rank_corr(y_true, y_pred):.6f}")
 
-    # 3) Top-K ranking quality vs heuristic “ground truth”
+    # Top-K ranking quality vs heuristic “ground truth”
     df_eval = df.copy()
     df_eval["pred_score"] = y_pred
 
